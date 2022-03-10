@@ -5,7 +5,7 @@ A functional, easy to use Python wrapper of Notion Api.
 # Install
 
 ```shell
-pip install py-notion
+pip install notion-potion
 ```
 
 # Usage
