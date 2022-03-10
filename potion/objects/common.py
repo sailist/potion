@@ -1,5 +1,5 @@
-from typing import List, Dict, Tuple
 import json
+from typing import List, Dict, Tuple
 
 
 class _Null: pass

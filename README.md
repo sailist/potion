@@ -16,7 +16,7 @@ Here lists examples reimplemented by potion from [official shell examples](https
 
 ### Database
 
-- [ ] [Query a Database](./examples/basic/database_query.py)
+- [Query a Database](./examples/basic/database_query.py)
 - [Create a database](./examples/basic/database_create.py)
 - [Retrieve a database](./examples/basic/database_retrieve.py)
 - [Update database](./examples/basic/database_update.py)
@@ -36,16 +36,31 @@ Here lists examples reimplemented by potion from [official shell examples](https
 - [Append block children](./examples/basic/block_append.py)
 - [Delete a block](./examples/basic/block_delete.py)
 
+### Users
+
+- [Retrieve a user/List all users/Retrieve your token's bot user](./examples/basic/user_retrieve.py)
+
+### Search
+
+- [Search](./examples/basic/search.py)
+
 # Api
 
 See [api.md](./api.md) for details.
 
-# Development
+# Development & Contribute
 
 ```shell
 git clone https://github.com/sailist/potion
 python setup
 ```
+
+Any issue and pr is welcome.
+
+# TODOs
+
+- [ ] Filter Object Enums
+- [ ] Parse json responses recurrsive into notion objects.
 
 # Related
 

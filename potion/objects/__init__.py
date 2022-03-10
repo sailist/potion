@@ -1,11 +1,12 @@
+from . import block
+from . import property as prop
+from . import query
+from . import rich
+from . import schema as sche
+from .block import Block
 from .common import NotionObject, Parent, Properties, Null
 from .database import Database
-from .page import Page
+from .enums import Color, Language, FilterProperty, FilterCondition
 from .error import Error
-from .block import Block
-
-from . import block
-from . import rich
-from . import property as prop
-from . import schema as sche
-from .enums import Color
+from .page import Page
+from .query import Filter, Sort, Search

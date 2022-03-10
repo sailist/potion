@@ -1,7 +1,6 @@
-from objects.common import Properties
 from potion import Request, NotionHeader
-from potion.objects import *
 from potion.api import *
+from potion.objects import *
 
 token = ''
 

@@ -1,8 +1,8 @@
 from typing import Union, List, Dict
 
 from potion.objects import NotionObject
-from potion.objects.property import Property
 from potion.objects.common import Properties, Parent
+from potion.objects.property import Property
 
 
 class Page(NotionObject):

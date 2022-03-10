@@ -20,6 +20,74 @@ class Color:
     red_backgroun = "red_backgroun"
 
 
+class FilterProperty:
+    rich_text = 'rich_text'
+    phone_number = 'phone_number'
+    number = 'number'
+    checkbox = 'checkbox'
+    select = 'select'
+    multi_select = 'multi-select'
+    date = 'date'
+    people = 'people'
+    files = 'files'
+    relation = 'relation'
+    formula = 'formula'
+
+
+class FilterCondition:
+    class Text:
+        # string
+        equals = 'equals'
+        does_not_equal = 'does_not_equal'
+        contains = 'contains'
+        does_not_contain = 'does_not_contain'
+        starts_with = 'starts_with'
+        ends_with = 'ends_with'
+        # boolean (only True)
+        is_empty = 'is_empty'
+        is_not_empty = 'is_not_empty'
+
+    class Number:
+        # string
+        equals = 'equals'
+        does_not_equal = 'does_not_equal'
+        greater_than = 'greater_than'
+        less_than = 'less_than'
+        greater_than_or_equal_to = 'greater_than_or_equal_to'
+        less_than_or_equal_to = 'less_than_or_equal_to'
+        # boolean (only True)
+        is_empty = 'is_empty'
+        is_not_empty = 'is_not_empty'
+
+    class Checkbox:
+        # boolean
+        equals = 'equals'
+        does_not_equal = 'does_not_equal'
+
+    class Select:
+        # string
+        equals = 'equals'
+        does_not_equal = 'does_not_equal'
+        # boolean (only True)
+        is_empty = 'is_empty'
+        is_not_empty = 'is_not_empty'
+
+    class MultiSelecte:
+        # string
+        contains = 'contains'
+        does_not_contain = 'does_not_contain'
+        # boolean (only True)
+        is_empty = 'is_empty'
+        is_not_empty = 'is_not_empty'
+
+    # TODO Formula
+    # TODO Rollup
+    # TODO Relation
+    # TODO Files
+    # TODO People
+    # TODO Date
+
+
 class Language:
     abap = 'abap'
     arduino = 'arduino'

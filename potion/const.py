@@ -1,5 +1,3 @@
-from contextlib import contextmanager
-
 default_headers = {
     'Content-Type': 'application/json',
     'Notion-Version': '2022-02-22'

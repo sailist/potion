@@ -11,6 +11,10 @@ sudo pip install dist/$(python3 install.py);
 pip install dist/$(python3 install.py) --user
 """
 
+from scripts import list_apis
+
+list_apis.main()
+
 setup(
     name='py-notion',
     version=__version__,
