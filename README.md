@@ -59,7 +59,8 @@ Any issue and pr is welcome.
 
 # TODOs
 
-- [ ] Filter Object Enums
+- [ ] Some uncommon used Object, like Filter, Emoji, File, etc..(While, you can implement your idea without this Object
+  by pass dict as args.)
 - [ ] Parse json responses recurrsive into notion objects.
 
 # Related
