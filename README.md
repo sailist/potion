@@ -10,6 +10,57 @@ pip install notion-potion
 
 # Usage
 
+## Quick Start
+
+Authentication
+
+```python
+from potion import Request, NotionHeader
+
+token = ''
+
+nh = NotionHeader(authorization=token)
+req = Request(nh.headers)
+```
+
+> Create an integration follow [this official tutorial](https://developers.notion.com/docs/getting-started) to get `token`.
+
+A 'retrieve' example. (Full code can be found [here](./examples/basic/database_retrieve.py))
+
+```python
+from potion.api import *
+
+print(req.get(url=database_retrieve('1bb0f79b87584afe8609d6e248285cfb')))
+```
+
+And a 'create' example. ([Full code](./examples/basic/database_create.py))
+
+```python
+from potion.api import *
+from potion.objects import *
+
+property_list = [
+    sche.AnySchema('+1', args=Null),  # delete property
+    sche.URL('Photo'),  # update property type of `Photo`
+    sche.MultiSelect('Store availability', [  # update Options of MultiSelect perproty `Store availability`
+        sche.Option('Duc Loi Market'),
+        sche.Option('Rainbow Grocery'),
+        sche.Option('Gus\'s Community Market'),
+        sche.Option('The Good Life Grocery', color='orange'),
+    ])
+]
+properties = Properties(*property_list)
+
+# Create Database object
+data = Database(properties=properties)
+
+# Commit update operation
+print(data)
+print(req.patch(url=database_update('1bb0f79b87584afe8609d6e248285cfb'),
+                data=data))
+
+```
+
 ## Basic Example
 
 Here lists examples reimplemented by potion from [official shell examples](https://developers.notion.com/reference)

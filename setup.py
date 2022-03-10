@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+
 from potion import __version__
 
 """
@@ -16,7 +17,7 @@ from scripts import list_apis
 list_apis.main()
 
 setup(
-    name='py-notion',
+    name='notion-potion',
     version=__version__,
     description='A functional, easy to use Python wrapper of Notion Api.',
     url='https://github.com/sailist/potion',
