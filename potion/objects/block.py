@@ -1,4 +1,4 @@
-from potion.objects import NotionObject
+from .common import NotionObject
 
 
 class Block(NotionObject):
