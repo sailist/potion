@@ -61,54 +61,39 @@ class MultiSelect(Schema):
         super().__init__(pname, args=Options(options))
 
 
-class Date(Schema):
-    def __init__(self, pname, start: datetime, end: datetime, time_zone: str):
-        kwargs = dict(start=start.isoformat(),
-                      end=end.isoformat(),
-                      time_zone=time_zone)
-        super(Date, self).__init__(pname,
-                                   kwargs=kwargs)
+class SingleValueSchema(Schema):
+    def __init__(self, pname: str):
+        super().__init__(pname)
 
 
-class SingleValueProperty(Schema):
-    def __init__(self, pname: str, value=None):
-        super().__init__(pname, args=value)
+class Date(SingleValueSchema):
+    pass
 
 
-class CheckBox(SingleValueProperty):
-    """
-    当 check = None 时，输出格式为
-    {
-      "Done?": {
-        "checkbox": {}
-      }
-    }
-    否则为单值
-    """
-
-    def __init__(self, pname: str, check: bool = None):
-        super().__init__(pname, value=check)
+class People(SingleValueSchema):
+    pass
 
 
-class URL(SingleValueProperty):
-    def __init__(self, pname: str, url: str = None):
-        super().__init__(pname, value=url)
+class Files(SingleValueSchema):
+    pass
 
 
-class Email(SingleValueProperty):
-    def __init__(self, pname: str, email: str = None):
-        super().__init__(pname, value=email)
+class CheckBox(SingleValueSchema): pass
 
 
-class Phone(SingleValueProperty):
-    def __init__(self, pname: str, phone_number: str = None):
-        super().__init__(pname, value=phone_number)
+class URL(SingleValueSchema): pass
+
+
+class Email(SingleValueSchema): pass
+
+
+class Phone(SingleValueSchema): pass
 
 
 class Formula(Schema):
     def __init__(self, pname: str):
         super().__init__(pname)
-        raise NotImplementedError('Formula property is not supported currently.')
+        raise NotImplementedError()
 
 
 class Relation(Schema):
@@ -123,13 +108,17 @@ class Rollup(Schema):
         raise NotImplementedError('Rollup property is not supported currently.')
 
 
-class People(Schema):
-    def __init__(self, pname: str):
-        super().__init__(pname)
-        raise NotImplementedError('People property is not supported currently.')
+class CreatedTime(SingleValueSchema):
+    property_name = 'created_time'
 
 
-class Files(Schema):
-    def __init__(self, pname: str):
-        super().__init__(pname)
-        raise NotImplementedError('Files property is not supported currently.')
+class CreatedBy(SingleValueSchema):
+    property_name = 'created_by'
+
+
+class LastEditedTime(SingleValueSchema):
+    property_name = 'last_edited_time'
+
+
+class LastEditedBy(SingleValueSchema):
+    property_name = 'last_edited_by'
