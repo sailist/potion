@@ -4,7 +4,7 @@ from potion import __version__
 
 """
 python3 setup.py sdist bdist_wheel; 
-python3 setup.py sdist bdist_wheel; sudo pip install dist/$(python3 install.py);
+python3 setup.py sdist bdist_wheel; pip3 install dist/$(python3 install.py);
 python3 setup.py sdist bdist_wheel; pip install dist/$(python3 install.py) --user
 python3 setup.py sdist bdist_wheel; pip install dist/$(python3 install.py) 
 python3 setup.py sdist bdist_wheel; pip3 install dist/$(python3 install.py) 
