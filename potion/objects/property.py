@@ -1,18 +1,34 @@
 from datetime import datetime
-from typing import List, Union
+from typing import List, Union, Dict
 
 __all__ = ['Number', 'Select', 'MultiSelect', 'Date',
            'CheckBox', 'URL', 'Email', 'Phone', 'Property']
 
 from .common import NotionObject, _Null
+from .rich import RichText
 
 
 class Property(NotionObject): pass
 
 
 class Title(Property):
-    def __init__(self, pname: str, title):
-        super().__init__(pname, args=title)
+    def __init__(self, pname: str, rich_text: List[Union[Dict, RichText]]):
+        super().__init__(pname, args=rich_text)
+
+    @staticmethod
+    def PageTitle(rich_text: List[Union[Dict, RichText]]):
+        return Title(None, rich_text=rich_text)
+
+
+class RichTextProp(Property):
+    property_name = 'rich_text'
+
+    def __init__(self, pname: str, rich_text: List[Union[Dict, RichText]]):
+        super().__init__(pname, args=rich_text)
+
+    @staticmethod
+    def PageTitle(rich_text: List[Union[Dict, RichText]]):
+        return Title(None, rich_text=rich_text)
 
 
 class Number(Property):
@@ -37,17 +53,22 @@ class Select(Property):
         return self['color']
 
 
+class MultiSelectOption(Property):
+    def __init__(self, name=None):
+        super().__init__(None, kwargs=dict(name=name))
+
+
 class MultiSelect(Property):
     property_name = 'multi_select'
 
-    def __init__(self, pname, selects: Union[List[Select], _Null]):
+    def __init__(self, pname, selects: Union[List[MultiSelectOption], _Null]):
         if isinstance(selects, list):
             selects = [i._value for i in selects]
         super().__init__(pname, args=selects)
 
 
 class Date(Property):
-    def __init__(self, pname, start: datetime, end: datetime, time_zone: str):
+    def __init__(self, pname, start: datetime = None, end: datetime = None, time_zone: str = None):
         kwargs = dict(start=start.isoformat(),
                       end=end.isoformat(),
                       time_zone=time_zone)

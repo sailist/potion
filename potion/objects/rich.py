@@ -2,10 +2,17 @@ from .common import NotionObject
 
 
 class RichText(NotionObject):
-    property_name = 'rich_text'
+    # property_name = 'rich_text'
+    include_type = True
+
+    def __init__(self, kwargs):
+        if self.__class__ == RichText:
+            self.property_name = 'rich_text'
+        super().__init__('', kwargs=kwargs)
 
 
 class Text(RichText):
+
     def __init__(self, content, link=None):
         super(Text, self).__init__(kwargs=dict(content=content, link=link))
 
