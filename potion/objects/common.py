@@ -54,9 +54,11 @@ class NotionObject:
             return values
 
         if self._name == '':
-            return {
-                self.prop: values
-            }
+            val = {}
+            if self.include_type:
+                val['type'] = self.prop
+            val[self.prop] = values
+            return val
 
         val = {}
         if self.include_type:
