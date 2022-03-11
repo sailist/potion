@@ -37,3 +37,9 @@ class Request:
 
     def parse(self):
         pass
+
+    @staticmethod
+    def from_token(authorization):
+        from potion.const import NotionHeader
+        nh = NotionHeader(authorization=authorization)
+        return Request(nh.headers)
