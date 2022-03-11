@@ -1,3 +1,6 @@
+"""
+https://developers.notion.com/reference/patch-block-children
+"""
 from potion import Request, NotionHeader
 from potion.api import *
 from potion.objects import *

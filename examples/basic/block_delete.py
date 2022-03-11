@@ -1,3 +1,6 @@
+"""
+https://developers.notion.com/reference/delete-a-block
+"""
 from potion import Request, NotionHeader
 from potion.api import *
 

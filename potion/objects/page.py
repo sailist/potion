@@ -7,6 +7,44 @@ from potion.objects.property import Property
 
 
 class Page(NotionObject):
+    """
+    For appending blocks
+    ```python
+    Page(children=[
+        block.Todo(rich_text=[], checked=True, color=Color.blue_background),
+        block.Heading2(rich_text=[{"type": "text", "text": {"content": "Lacinato kale"}}]),
+        {
+            "type": "heading_2",
+            "heading_2": {
+                "rich_text": [{"type": "text", "text": {"content": "Lacinato kale"}}]
+            }
+        },
+    ])
+    ```
+    For create page
+    ```python
+    properties = Properties(
+        prop.Title('Name',
+                   rich_text=[
+                       {
+                           "text": {
+                               "content": "Tuscan Kale"
+                           }
+                       }
+                   ]
+                   ),
+        prop.Number('Price', 2.5),
+        prop.MultiSelect('Args', [
+            prop.MultiSelectOption(name='A'),
+            prop.MultiSelectOption(name='B'),
+        ])
+    )
+
+    data = Page(parent=Parent.DataBaseParent('7d39de23304d484ea079a35f816ae68f'),
+                properties=properties
+                )
+    ```
+    """
     union_type = 'dict'
 
     def __init__(self,

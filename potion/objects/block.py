@@ -52,6 +52,18 @@ class Bulleted(Block):
                          color=color,
                          children=children)
 
+    @property
+    def rich_text(self):
+        return self['rich_text']
+
+    @property
+    def color(self):
+        return self['color']
+
+    @property
+    def children(self):
+        return self['children']
+
 
 class Numbered(Bulleted):
     property_name = 'numbered_list_item'

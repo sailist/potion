@@ -33,7 +33,7 @@ from potion.api import *
 print(req.get(url=database_retrieve('1bb0f79b87584afe8609d6e248285cfb')))
 ```
 
-And a 'create' example. ([Full code](./examples/basic/database_create.py))
+And a 'update' example. ([Full code](./examples/basic/database_create.py))
 
 ```python
 from potion.api import *
