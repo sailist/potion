@@ -9,7 +9,7 @@ req = Request(nh.headers)
 
 properties = Properties(
     prop.Title('Name',
-               title=[
+               rich_text=[
                    {
                        "text": {
                            "content": "Tuscan Kale"
@@ -18,9 +18,13 @@ properties = Properties(
                ]
                ),
     prop.Number('Price', 2.5),
+    prop.MultiSelect('Args', [
+        prop.MultiSelectOption(name='A'),
+        prop.MultiSelectOption(name='B'),
+    ])
 )
 
-data = Page(parent=Parent.DataBaseParent('84b3a4d21ccb4435889084f933c3fc04'),
+data = Page(parent=Parent.DataBaseParent('7d39de23304d484ea079a35f816ae68f'),
             properties=properties
             )
 

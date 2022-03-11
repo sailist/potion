@@ -10,7 +10,7 @@ token = ''
 nh = NotionHeader(authorization=token)
 req = Request(nh.headers)
 
-data = Filter(
+data = Filter.QueryDatabase(
     query.Or(
         {
             "property": "Done",
@@ -42,5 +42,5 @@ data = Filter(
     )
 )
 print(data)
-print(req.post(url=database_create(),
-               data=data))
+# print(req.post(url=database_create(),
+#                data=data))
