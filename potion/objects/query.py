@@ -13,6 +13,9 @@ class Or(Condition): pass
 
 
 class QueryProperty(NotionObject):
+    """
+    see https://developers.notion.com/reference/post-database-query-filter for details
+    """
     union_type = 'dict'
 
     def __init__(self, property_name: str, property_type: str, conditions: str, condition_value):
@@ -27,8 +30,16 @@ class QueryProperty(NotionObject):
 class Filter(NotionObject):
     union_type = 'dict'
 
-    def __init__(self, conditions: Condition):
-        super().__init__('', args=conditions)
+    def __init__(self, pname: str, conditions: Condition):
+        super().__init__(pname, args=conditions)
+
+    @staticmethod
+    def Search(conditions: Condition):
+        return Filter(None, conditions)
+
+    @staticmethod
+    def QueryDatabase(conditions: Condition):
+        return Filter('', conditions)
 
 
 class Sort(NotionObject):
@@ -37,7 +48,7 @@ class Sort(NotionObject):
 
 class Search(NotionObject):
 
-    def __init__(self, query: str, sort=None, filter=None, start_cursor: str = None, page_size: int = None):
+    def __init__(self, query: str = None, sort=None, filter=None, start_cursor: str = None, page_size: int = None):
         super().__init__(None, kwargs={
             'query': query,
             'sort': sort,
