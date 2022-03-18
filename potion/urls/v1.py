@@ -8,14 +8,26 @@ def pages(page_id='', property_id=None):
     return f'https://api.notion.com/v1/pages/{page_id}{property_str}'
 
 
-def blocks(block_id='', page_size=None, append=False):
+def blocks(block_id='', page_size=None, start_cursor=None, append=False):
     assert page_size is None or isinstance(page_size, int)
+    # assert start_cursor is None or isinstance(start_cursor, star)
 
     if append:
         children_str = f'/children'
     else:
-        children_str = f'/children?page_size={page_size}' if page_size is not None else ''
+        children_strs = []
+        if page_size is not None:
+            children_strs.append(f'page_size={page_size}')
+        if start_cursor is not None:
+            children_strs.append(f'start_cursor={start_cursor}')
+        children_strs = '&'.join(children_strs)
+        children_str = f'/children?{children_strs}'
     return f"https://api.notion.com/v1/blocks/{block_id}{children_str}"
+
+
+def blocks_cursor(block_id='', page_size=None, start_cursor=None):
+    assert page_size is None or isinstance(page_size, int)
+    return f"https://api.notion.com/v1/blocks/{block_id}/children?"
 
 
 def users(user_id=''):
