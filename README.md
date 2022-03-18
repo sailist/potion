@@ -2,6 +2,10 @@
 
 A functional, easy to use Python wrapper of Notion Api.
 
+- easy-to-use low-level api
+- integration local-backup function
+- [ ] render notion object to markdown/html, etc..
+
 # Install
 
 ```shell
@@ -65,37 +69,34 @@ print(req.patch(url=database_update('1bb0f79b87584afe8609d6e248285cfb'),
 
 Here lists examples reimplemented by potion from [official shell examples](https://developers.notion.com/reference)
 
-### Database
+|Database|Pages|Blocks|Users|Search|
+|---|---|---|---|---|
+|[Query a Database](./examples/basic/database_query.py)|[Retrieve a page](./examples/basic/page_retrieve.py)|[Retrieve a block](./examples/basic/block_retrieve.py)|[Retrieve a user/List all users/Retrieve your token's bot user](./examples/basic/user_retrieve.py)|[Search](./examples/basic/search.py)|
+|[Create a database](./examples/basic/database_create.py)|[Create a page](./examples/basic/page_create.py)|[Update a block](./examples/basic/block_update.py)|||
+|[Retrieve a database](./examples/basic/database_retrieve.py)|[Update page](./examples/basic/page_update.py)|[Retrieve block children](./examples/basic/block_children_retrieve.py)|||
+|[Update database](./examples/basic/database_update.py)|[Retrieve a page property item](./examples/basic/page_property_retrieve.py)|[Append block children](./examples/basic/block_append.py)|||
+|||[Delete a block](./examples/basic/block_delete.py)|||
+||||||
 
-- [Query a Database](./examples/basic/database_query.py)
-- [Create a database](./examples/basic/database_create.py)
-- [Retrieve a database](./examples/basic/database_retrieve.py)
-- [Update database](./examples/basic/database_update.py)
+## Backup
 
-### Pages
+```shell
+python -m potion.backup {token} {backup_dir}
+# python -m potion.backup secret_umqPgKzCvvCaAc1FE408aRvYHymxaak5HriWIvaVzs ./backup
+```
 
-- [Retrieve a page](./examples/basic/page_retrieve.py)
-- [Create a page](./examples/basic/page_create.py)
-- [Update page](./examples/basic/page_update.py)
-- [Retrieve a page property item](./examples/basic/page_property_retrieve.py)
+> It will use [dbrecord](https://github.com/sailist/dbrecord) to generate two sqlite database file under `backup_dir`.
 
-### Blocks
+You can read backuped data simpily by using the code below:
 
-- [Retrieve a block](./examples/basic/block_retrieve.py)
-- [Update a block](./examples/basic/block_update.py)
-- [Retrieve block children](./examples/basic/block_children_retrieve.py)
-- [Append block children](./examples/basic/block_append.py)
-- [Delete a block](./examples/basic/block_delete.py)
+```python
+from dbrecord import PList
+backup_dir = ...
+lis = PList(f'{backup_dir}/notion-backup.sqlite')
+print(lis[0])
+```
 
-### Users
-
-- [Retrieve a user/List all users/Retrieve your token's bot user](./examples/basic/user_retrieve.py)
-
-### Search
-
-- [Search](./examples/basic/search.py)
-
-# Api
+# Api List
 
 See [api.md](./api.md) for details.
 
@@ -117,3 +118,4 @@ Any issue and pr is welcome.
 # Related
 
 - [notion-py](https://github.com/jamalex/notion-py)
+- [dbrecord](https://github.com/sailist/dbrecord)
