@@ -38,14 +38,14 @@ def block_retrieve(block_id):
     return url.blocks(block_id)
 
 
-def block_children_retrieve(block_id, page_size: int = 100):
+def block_children_retrieve(block_id, page_size: int = 100, start_cursor=None):
     """
     get
     :param block_id:
     :param page_size:
     :return:
     """
-    return url.blocks(block_id, page_size)
+    return url.blocks(block_id, page_size=page_size, start_cursor=start_cursor)
 
 
 def user_retrieve(user_id):
