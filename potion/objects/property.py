@@ -69,8 +69,12 @@ class MultiSelect(Property):
 
 class Date(Property):
     def __init__(self, pname, start: datetime = None, end: datetime = None, time_zone: str = None):
-        kwargs = dict(start=start.isoformat(),
-                      end=end.isoformat(),
+        if start is not None:
+            start = start.isoformat()
+        if end is not None:
+            end = end.isoformat()
+        kwargs = dict(start=start,
+                      end=end,
                       time_zone=time_zone)
         super(Date, self).__init__(pname,
                                    kwargs=kwargs)

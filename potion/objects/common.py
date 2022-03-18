@@ -15,12 +15,22 @@ class NotionObject:
 
     def __init__(self, pname: str, args=None, kwargs=None):
         self._name = pname
+        self._loaded_keys = set()
         if args is not None:
             self._value = args
         elif kwargs is not None:
             self._value = {k: v for k, v in kwargs.items() if v is not None}
         else:
             self._value = {}
+
+    def load_mark(self, key):
+        self._loaded_keys.add(key)
+
+    def loaded(self, key):
+        return key in self._loaded_keys
+
+    def __setitem__(self, key, value):
+        self._value[key] = value
 
     def __getitem__(self, item):
         if isinstance(self._value, dict):

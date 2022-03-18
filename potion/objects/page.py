@@ -66,6 +66,9 @@ class Page(NotionObject):
                                      properties=properties,
                                      **kwargs))
 
+        self.load_mark('parent')
+        self.load_mark('properties')
+
     @property
     def parent(self):
         return self['parent']
@@ -105,3 +108,6 @@ class Page(NotionObject):
     @property
     def url(self):
         return self['url']
+
+    def set_children(self, blocks):
+        self['children'] = blocks

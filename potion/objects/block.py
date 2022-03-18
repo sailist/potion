@@ -8,6 +8,21 @@ class Block(NotionObject):
         super().__init__('',
                          kwargs=dict(**kwargs))
 
+    def set_children(self, blocks):
+        self['children'] = blocks
+
+    @property
+    def id(self):
+        return self['id']
+
+    @property
+    def has_children(self):
+        return self['has_children']
+
+    @property
+    def type(self):
+        return self['type']
+
 
 class Todo(Block):
     property_name = 'to_do'
