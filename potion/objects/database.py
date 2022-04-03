@@ -23,8 +23,16 @@ class Database(NotionObject):
                                      **kwargs))
 
     @property
-    def parent(self):
-        return Parent(**self['parent'])
+    def short_id(self):
+        return self.id[:4]
+
+    @property
+    def string_title(self):
+        return ''.join([i['plain_text'] for i in self.title])
+
+    @property
+    def parent(self) -> Parent:
+        return self['parent']
 
     @property
     def title(self):

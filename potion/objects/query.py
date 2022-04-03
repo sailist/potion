@@ -12,6 +12,11 @@ class And(Condition): pass
 class Or(Condition): pass
 
 
+class SortProperty(NotionObject):
+    def __init__(self, property=None, direction='ascending'):
+        super().__init__(None, kwargs={'property': property, 'direction': direction})
+
+
 class QueryProperty(NotionObject):
     """
     see https://developers.notion.com/reference/post-database-query-filter for details
@@ -38,12 +43,15 @@ class Filter(NotionObject):
         return Filter(None, conditions)
 
     @staticmethod
-    def QueryDatabase(conditions: Condition):
-        return Filter('', conditions)
+    def QueryDatabase(filter: Condition):
+        return Filter('', filter)
 
 
-class Sort(NotionObject):
+class Sorts(NotionObject):
     property_name = 'sorts'
+
+    def __init__(self, *sorts):
+        super().__init__('', args=sorts)
 
 
 class Search(NotionObject):

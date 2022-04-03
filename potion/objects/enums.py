@@ -85,7 +85,20 @@ class FilterCondition:
     # TODO Relation
     # TODO Files
     # TODO People
-    # TODO Date
+    class Date:
+        equals = 'equals'
+        is_empty = 'is_empty'
+        is_not_empty = 'is_not_empty'
+        before = 'before'
+        after = 'after'
+        on_or_before = 'on_or_before'
+        on_or_after = 'on_or_after'
+        past_week = 'past_week'
+        past_month = 'past_month'
+        past_year = 'past_year'
+        next_week = 'next_week'
+        next_month = 'next_month'
+        next_year = 'next_year'
 
 
 class Language:

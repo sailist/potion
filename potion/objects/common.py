@@ -96,13 +96,37 @@ class Parent(NotionObject):
         super().__init__(None, kwargs=dict(type=type, page_id=page_id,
                                            workspace=workspace, database_id=database_id))
 
+    @property
+    def type(self):
+        return self['type']
+
+    @property
+    def is_page(self):
+        return self.type == 'page_id'
+
+    @property
+    def is_database(self):
+        return self.type == 'database_id'
+
+    @property
+    def is_workspace(self):  # root
+        return self.type == 'workspace'
+
+    @property
+    def id(self):
+        if self.is_page:
+            return self['page_id']
+        elif self.is_database:
+            return self['database_id']
+        return None
+
     @staticmethod
     def PageParent(page_id):
         return Parent(type='page_id', page_id=page_id)
 
     @staticmethod
     def DataBaseParent(database_id):
-        return Parent(database_id=database_id)
+        return Parent(type='database_id', database_id=database_id)
 
     @staticmethod
     def PageWorkspaceParent():

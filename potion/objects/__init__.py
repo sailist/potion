@@ -9,5 +9,5 @@ from .database import Database
 from .enums import Color, Language, FilterProperty, FilterCondition
 from .error import Error
 from .page import Page
-from .query import Filter, Sort, Search
+from .query import Filter, Sorts, Search
 from .pagination import Pagination

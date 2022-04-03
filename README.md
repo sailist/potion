@@ -78,6 +78,40 @@ Here lists examples reimplemented by potion from [official shell examples](https
 |||[Delete a block](./examples/basic/block_delete.py)|||
 ||||||
 
+## Object Oriented Api
+
+potion also provides object oriented operations for Notion page and Notion database:
+
+```python
+from potion.beans import NotionPage, NotionDatabase
+
+token = ''
+# Retrieve
+page = NotionPage(auth=token, id=...)
+# Create a new one
+page = NotionPage(auth=token, parent=...)
+print(page)
+
+# set property
+page.set_text('title', 'temp')
+page.set_number('End', 42)
+page.flush_property()
+
+# append content
+page.append_code("""print('hello world!')""", 'python')
+page.flush_children()
+
+# page.parent
+## page.parent_database
+## page.parent_page
+database = page.create_database()
+# TODO
+# database operations
+database.add_property()
+database.update_property()
+database.create_page()
+```
+
 ## Backup
 
 ```shell
@@ -91,6 +125,7 @@ You can read backuped data simpily by using the code below:
 
 ```python
 from dbrecord import PList
+
 backup_dir = ...
 lis = PList(f'{backup_dir}/notion-backup.sqlite')
 print(lis[0])

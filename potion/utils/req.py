@@ -7,6 +7,16 @@ from potion.objects import NotionObject
 from .parser import parse
 
 
+def to_json(data):
+    if issubclass(data.__class__, NotionObject):
+        data = data.to_json()
+    elif isinstance(data, dict):
+        data = json.dumps(data, ensure_ascii=False)
+    else:
+        raise NotImplementedError()
+    return data
+
+
 class Request:
     def __init__(self, headers=None):
         if headers is None:
@@ -20,14 +30,12 @@ class Request:
         return parse(dic=content)
 
     def post(self, url, data: Union[NotionObject, Dict, str]):
-        if issubclass(data.__class__, NotionObject):
-            data = data.to_json()
+        data = to_json(data)
         content = json.loads(requests.post(url=url, data=data.encode(), headers=self.headers).content)
         return parse(dic=content)
 
     def patch(self, url, data: Union[NotionObject, Dict, str]):
-        if issubclass(data.__class__, NotionObject):
-            data = data.to_json()
+        data = to_json(data)
         content = json.loads(requests.patch(url=url, data=data.encode(), headers=self.headers).content)
         return parse(dic=content)
 

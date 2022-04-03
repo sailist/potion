@@ -20,5 +20,6 @@ data = Page(children=[
         }
     },
 ])
-print(req.patch(url=block_children_append('a20f7d2442ce4004860541fbada2f61c'),  # a page_id
-                data=data))
+print(data)
+# print(req.patch(url=block_children_append('a20f7d2442ce4004860541fbada2f61c'),  # a page_id
+#                 data=data))

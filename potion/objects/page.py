@@ -70,8 +70,16 @@ class Page(NotionObject):
         self.load_mark('properties')
 
     @property
-    def parent(self):
+    def string_title(self) -> str:
+        for k, v in self['properties'].items():
+            if v['id'] == 'title':
+                return ''.join([t['plain_text'] for t in v['title']])
+        return self.id
+
+    @property
+    def parent(self) -> Parent:
         return self['parent']
+
 
     @property
     def properties(self):
@@ -80,6 +88,10 @@ class Page(NotionObject):
     @property
     def object(self):
         return self['object']
+
+    @property
+    def short_id(self):
+        return self.id[:4]
 
     @property
     def id(self):

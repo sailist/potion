@@ -1,4 +1,3 @@
-from datetime import datetime
 from typing import List
 
 __all__ = ['Number', 'Select', 'MultiSelect', 'Date', 'Option',
