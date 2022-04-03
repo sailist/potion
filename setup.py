@@ -25,7 +25,7 @@ setup(
     author_email='sailist@outlook.com',
     license='Apache License 2.0',
     include_package_data=True,
-    install_requires=['dbrecord'],
+    install_requires=['dbrecord', 'requests'],
     # https://pypi.org/classifiers/
     classifiers=[
         'Programming Language :: Python :: 3.6',

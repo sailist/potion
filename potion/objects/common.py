@@ -139,6 +139,8 @@ class Properties(NotionObject):
     def __init__(self, *property: NotionObject):
         super().__init__(None, args=property)
 
+
+
     @staticmethod
     def from_dict(dic):
         return Properties(dic)

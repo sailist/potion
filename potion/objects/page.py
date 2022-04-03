@@ -82,7 +82,7 @@ class Page(NotionObject):
 
 
     @property
-    def properties(self):
+    def properties(self) -> Properties:
         return self['properties']
 
     @property
