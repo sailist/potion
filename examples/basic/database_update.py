@@ -8,7 +8,7 @@ nh = NotionHeader(authorization=token)
 req = Request(nh.headers)
 
 property_list = [
-    sche.AnySchema('+1', args=Null),
+    sche.DeleteSchema('+1'),
     sche.URL('Photo'),
     sche.MultiSelect('Store availability', [
         sche.Option('Duc Loi Market'),
@@ -18,7 +18,7 @@ property_list = [
     ])
 ]
 
-print(sche.AnySchema('+1', args=Null))
+print(sche.DeleteSchema('+1'))
 
 properties = Properties(*property_list)
 

@@ -3,13 +3,18 @@ from typing import List
 __all__ = ['Number', 'Select', 'MultiSelect', 'Date', 'Option',
            'CheckBox', 'URL', 'Email', 'Phone', 'Title', 'RichText']
 
-from .common import NotionObject, Any
+from .common import NotionObject, Any, Null
 
 
 class Schema(NotionObject): pass
 
 
 class AnySchema(Any): pass
+
+
+class DeleteSchema(Schema):
+    def __init__(self, pname: str):
+        super().__init__(pname, args=Null)
 
 
 class Title(Schema):
