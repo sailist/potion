@@ -1,6 +1,6 @@
 import os
 from collections import defaultdict
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 
 from potion import Request
 from potion.api import *
@@ -45,16 +45,28 @@ class NotionDatabase(NotionObject):
         self.blocks = {}
 
         self._parent = parent
-        self.properties = []
+        self.cache_properties = []
         self.children = []
         self.multi_select_property = defaultdict(set)
-
-    def add_property(self):
-        pass
-
-    def update_property(self):
-        pass
 
     def create_page(self) -> 'NotionPage':
         from .page import NotionPage
         return NotionPage(auth=self.auth, parent=Parent.DataBaseParent(self.id))
+
+    def properties(self):
+        return self.object.properties
+
+    def set_property(self, property_args: sche.Schema):
+        self.cache_properties.append(property_args)
+
+    def flush_property(self):
+        return self.update_properies(self.cache_properties)
+
+    def update_properies(self, property_list: List[sche.Schema]):
+        p = Properties(*property_list)
+        presp = self.req.patch(database_update(self.id), Database(properties=Properties(p)))
+        if isinstance(presp, Database):
+            self.object = presp
+            return True, presp
+        else:
+            return False, presp

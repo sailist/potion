@@ -47,12 +47,6 @@ class NotionPage(NotionObject):
         self.children = []
         self.multi_select_property = defaultdict(set)
 
-    def add_property(self):
-        pass
-
-    def update_property(self):
-        pass
-
     def flush_property(self):
         for property_name, values in self.multi_select_property.items():
             self.properties.append(prop.MultiSelect(property_name, selects=[
@@ -93,8 +87,14 @@ class NotionPage(NotionObject):
         self.flush_children()
         return NotionDatabase(auth=self.auth, parent=Parent.PageParent(self.id))
 
-    def set_title(self, property_name, value):
-        self.properties.append(prop.Title(property_name,
+    @property
+    def title_property_name(self):
+        for prop_name in self.object.properties:
+            if self.object.properties[prop_name]['id'] == 'title':
+                return prop_name
+
+    def set_title(self, value: str):
+        self.properties.append(prop.Title(self.title_property_name,
                                           rich_text=[rich.Text(content=value)]))
 
     def set_text(self, property_name, value):
