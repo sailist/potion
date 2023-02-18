@@ -1,9 +1,13 @@
+import inspect
+
 from potion.api import *
 from potion.objects import *
-import inspect
 
 
 def main():
+    # hack import 
+    _ = [NotionObject, page_create]
+
     api_dic = {
 
     }
