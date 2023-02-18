@@ -1,8 +1,11 @@
-import sys, os
+import os
+import sys
 import time
 from typing import Union
-from tqdm import tqdm
+
 from dbrecord.pdict import PDict
+from tqdm import tqdm
+
 from potion import Request, NotionHeader
 from potion.api import *
 from potion.objects import *

@@ -7,7 +7,6 @@ from potion import Request
 from potion.api import *
 from potion.objects import Parent, Page, Properties
 from potion.objects import block, rich, prop, Error as NotionError
-
 from .base import NotionObject
 
 if TYPE_CHECKING:

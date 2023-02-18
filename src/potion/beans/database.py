@@ -4,8 +4,7 @@ from typing import TYPE_CHECKING, List
 
 from potion import Request
 from potion.api import *
-from potion.objects import Parent, Page, Properties, Database, sche
-from potion.objects import prop, Error as NotionError
+from potion.objects import Parent, Properties, Database, sche
 from .base import NotionObject
 
 if TYPE_CHECKING:

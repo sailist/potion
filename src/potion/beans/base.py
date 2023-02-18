@@ -1,9 +1,9 @@
 import os
+from typing import TYPE_CHECKING
 
 from potion import Request
 from potion.api import *
 from potion.objects import Parent
-from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .page import NotionPage

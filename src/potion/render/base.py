@@ -1,11 +1,11 @@
-import json
+import os
 import os
 import re
 from collections import defaultdict
-import shutil
-from typing import Union, List
 from pathlib import Path
-from potion.objects import NotionObject, Page, Database
+from typing import Union, List
+
+from potion.objects import Page, Database
 
 
 class Parser:

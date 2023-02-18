@@ -80,7 +80,6 @@ class Page(NotionObject):
     def parent(self) -> Parent:
         return self['parent']
 
-
     @property
     def properties(self) -> Properties:
         return self['properties']

@@ -1,2 +1,2 @@
-from .page import NotionPage
 from .database import NotionDatabase
+from .page import NotionPage
