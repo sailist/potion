@@ -2,8 +2,6 @@ import re
 
 from setuptools import setup, find_packages
 
-from potion import __version__
-
 
 def extract_version():
     return re.search(
@@ -14,7 +12,7 @@ def extract_version():
 if __name__ == '__main__':
     setup(
         name='notion-potion',
-        version=__version__,
+        version=extract_version(),
         description='A functional, easy to use Python wrapper of Notion Api.',
         url='https://github.com/sailist/potion',
         author='sailist',
