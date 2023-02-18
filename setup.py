@@ -2,20 +2,6 @@ from setuptools import setup, find_packages
 
 from potion import __version__
 
-"""
-python3 setup.py sdist bdist_wheel; 
-python3 setup.py sdist bdist_wheel; pip3 install dist/$(python3 install.py);
-python3 setup.py sdist bdist_wheel; pip install dist/$(python3 install.py) --user
-python3 setup.py sdist bdist_wheel; pip install dist/$(python3 install.py) 
-python3 setup.py sdist bdist_wheel; pip3 install dist/$(python3 install.py) 
-sudo pip install dist/$(python3 install.py);
-pip install dist/$(python3 install.py) --user
-"""
-
-from scripts import list_apis
-
-list_apis.main()
-
 setup(
     name='notion-potion',
     version=__version__,
@@ -36,6 +22,8 @@ setup(
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
     ],
     keywords='potion notion',
-    packages=find_packages('.', exclude=('tests', 'scripts', 'examples')),
+    package_dir={"": "src"},
+    packages=find_packages('src'),
+    # packages=find_packages('.', exclude=('tests', 'scripts', 'examples')),
     entry_points={},
 )
