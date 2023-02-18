@@ -59,6 +59,9 @@
 [potion.objects.page](./potion/objects/page.py)
  - Page
 
+[potion.objects.pagination](./potion/objects/pagination.py)
+ - Pagination
+
 [potion.objects.property](./potion/objects/property.py)
  - CheckBox
  - Date
@@ -66,11 +69,13 @@
  - Files
  - Formula
  - MultiSelect
+ - MultiSelectOption
  - Number
  - People
  - Phone
  - Property
  - Relation
+ - RichTextProp
  - Rollup
  - Select
  - SingleValueProperty
@@ -84,7 +89,8 @@
  - Or
  - QueryProperty
  - Search
- - Sort
+ - SortProperty
+ - Sorts
 
 [potion.objects.rich](./potion/objects/rich.py)
  - Link
@@ -94,10 +100,15 @@
 [potion.objects.schema](./potion/objects/schema.py)
  - AnySchema
  - CheckBox
+ - CreatedBy
+ - CreatedTime
  - Date
+ - DeleteSchema
  - Email
  - Files
  - Formula
+ - LastEditedBy
+ - LastEditedTime
  - MultiSelect
  - Number
  - Option
@@ -109,7 +120,7 @@
  - Rollup
  - Schema
  - Select
- - SingleValueProperty
+ - SingleValueSchema
  - Title
  - URL
 
