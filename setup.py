@@ -14,6 +14,7 @@ if __name__ == '__main__':
         name='notion-potion',
         version=extract_version(),
         description='A functional, easy to use Python wrapper of Notion Api.',
+        long_description_content_type='text/markdown',
         url='https://github.com/sailist/potion',
         author='sailist',
         author_email='sailist@outlook.com',
