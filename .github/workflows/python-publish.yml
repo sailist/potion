@@ -1,0 +1,101 @@
+# This workflow will upload a Python Package using Twine when a release is created
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#publishing-to-package-registries
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Upload Python Package and create release
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  extract_version:
+    runs-on: ubuntu-latest
+    name: A job to generation version of current library
+    outputs:
+      can_publish: ${{ steps.version.outputs.git_result == '' }}
+      full_version: ${{ steps.version.outputs.full_version }}
+      pypi_version: ${{ steps.version.outputs.pypi_version }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get current version
+        run: |
+          echo "pypi_version=v$(python extract_version.py)" >> $GITHUB_OUTPUT
+          echo "full_version=v$(python extract_version.py).$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
+        id: version
+      - id: check
+        run: |
+          echo "git_result=$(echo $(git tag -l "${{ steps.version.outputs.pypi_version }}*" | head -n 1))" >> $GITHUB_OUTPUT
+      - run: |
+          echo $(git tag -l ${{ steps.version.outputs.full_version }})
+          echo $(git tag -l "${{ steps.version.outputs.pypi_version }}*" | head -n 1)
+          echo ${{ steps.version.outputs.git_result == '' }}
+  debug:
+    runs-on: ubuntu-latest
+    name: Debug outputs
+    needs: extract_version
+    steps:
+      - run: echo ${{ needs.extract_version.outputs.can_publish }}
+      - run: echo ${{ needs.extract_version.outputs.can_publish == 'true' }}
+  create_tag:
+    name: Create tag
+    runs-on: ubuntu-latest
+    needs: extract_version
+    if: ${{ needs.extract_version.outputs.can_publish == 'true' }}
+    steps:
+      - run: echo ${{ needs.extract_version.outputs.can_publish }}
+      - run: echo ${{ needs.extract_version.outputs.can_release }}
+      - uses: actions/checkout@v3
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: ${{needs.extract_version.outputs.full_version}}
+          message: "Latest released version"
+
+  publish:
+    needs: [ extract_version,create_tag ]
+    if: ${{ needs.extract_version.outputs.can_publish == 'true' }}
+    runs-on: ubuntu-latest
+    name: Publish on pypi
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+      - name: Install dependenciesc
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+      - name: Build package
+        run: python -m build
+      - name: Publish package
+        uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+        with:
+          user: ${{ secrets.PYPI_API_USER }}
+          password: ${{ secrets.PYPI_API_TOKEN }}
+
+  create_release:
+    needs: [ create_tag,extract_version ]
+    name: Create Release
+    if: ${{ needs.extract_version.outputs.can_publish == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+      - uses: ncipollo/release-action@v1
+        name: Create Release
+        id: create_release
+        with:
+          tag: ${{needs.extract_version.outputs.full_version}}
+          name: ${{needs.extract_version.outputs.full_version}}
+          body: |
+            Automatically created by Github Action.
+            Latest commit message: ${{ github.event.head_commit.message }}
