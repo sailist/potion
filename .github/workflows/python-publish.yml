@@ -25,12 +25,10 @@ jobs:
         with:
           fetch-depth: 0
       - name: Get current version
+        id: version
         run: |
           echo "pypi_version=v$(python extract_version.py)" >> $GITHUB_OUTPUT
           echo "full_version=v$(python extract_version.py).$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
-        id: version
-      - id: check
-        run: |
           echo "git_result=$(echo $(git tag -l "${{ steps.version.outputs.pypi_version }}*" | head -n 1))" >> $GITHUB_OUTPUT
       - run: |
           echo $(git tag -l ${{ steps.version.outputs.full_version }})
