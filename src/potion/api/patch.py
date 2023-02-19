@@ -2,36 +2,20 @@ from potion.urls import url
 
 
 def database_update(database_id):
-    """
-    patch
-    :param database_id:
-    :return:
-    """
+    """https://developers.notion.com/reference/update-a-database"""
     return url.databases(database_id)
 
 
 def page_update(page_id):
-    """
-    patch
-    :param page_id:
-    :return:
-    """
+    """https://developers.notion.com/reference/patch-page"""
     return url.pages(page_id)
 
 
 def block_update(block_id):
-    """
-    patch
-    :param block_id:
-    :return:
-    """
+    """https://developers.notion.com/reference/update-a-block"""
     return url.blocks(block_id)
 
 
 def block_children_append(block_id):
-    """
-    patch
-    :param block_id:
-    :return:
-    """
+    """https://developers.notion.com/reference/patch-block-children"""
     return url.blocks(block_id, append=True)

@@ -13,3 +13,7 @@ def parse(dic: dict) -> NotionObject:
     elif dic['object'] == 'list':
         return Pagination(**dic)
     return dic
+
+
+def format_query(**kwargs):
+    return '?' + '&'.join([f'{k}={v}' for k, v in kwargs.items() if v is not None])
