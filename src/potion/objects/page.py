@@ -122,3 +122,17 @@ class Page(NotionObject):
 
     def set_children(self, blocks):
         self['children'] = blocks
+
+    @property
+    def title(self):
+        for k, v in self['properties'].items():
+            if v['type'] == 'title':
+                return v
+        return None
+
+    @property
+    def title_plain_text(self):
+        title = self.title
+        if title is None:
+            return None
+        return ''.join([i['plain_text'] for i in title['title']])

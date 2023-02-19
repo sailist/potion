@@ -77,3 +77,7 @@ class Database(NotionObject):
     @property
     def archived(self) -> bool:
         return self['archived']
+
+    @property
+    def title_plain_text(self):
+        return ''.join([i['plain_text'] for i in self.title])

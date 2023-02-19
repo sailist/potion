@@ -11,7 +11,7 @@ from potion.api import *
 from potion.objects import *
 
 
-def recursive_parsechild(parent: Union[Page, Block], pid):
+def recursive_parsechild(parent: Union[Page, Block], pid, req):
     has_more = True
     blocks = []
     start_cursor = None
@@ -23,7 +23,7 @@ def recursive_parsechild(parent: Union[Page, Block], pid):
             for block in pag.results:
                 if isinstance(block, Block):
                     if block.has_children and block.type not in {'child_page', 'child_database'}:
-                        recursive_parsechild(block, block.id)
+                        recursive_parsechild(block, block.id, req)
                 blocks.append(block)
         else:
             time.sleep(1)
@@ -62,7 +62,7 @@ def full_backup(req, base_path):
                         continue
 
                 if isinstance(res, Page):
-                    res = recursive_parsechild(res, res.id)
+                    res = recursive_parsechild(res, res.id, req)
                 elif isinstance(res, Database):
                     pass
                 else:
@@ -78,7 +78,7 @@ def full_backup(req, base_path):
     return skiped, updated
 
 
-if __name__ == '__main__':
+def main():
     args = list(sys.argv[1:])
     if len(args) < 2:
         print('python -m potion.backup {token} {path}')
@@ -90,7 +90,11 @@ if __name__ == '__main__':
 
     nh = NotionHeader(authorization=token)
     req = Request(nh.headers)
-
+    print(f'save to {os.path.abspath(base_path)}')
     skiped, updated = full_backup(req, base_path)
     print(f'Notion backup finished. {skiped} skiped, {updated} updated.')
     exit(0)
+
+
+if __name__ == '__main__':
+    main()
