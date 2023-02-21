@@ -19,4 +19,6 @@ class Editable(Dict):
 
     @property
     def last_edited_by(self):
+        if 'last_edited_by' not in self:  # For Comment object
+            return {}
         return User.SimpleUser(self['last_edited_by'])
