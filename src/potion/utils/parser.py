@@ -14,7 +14,8 @@ def parse(dic: dict) -> NotionObject:
         return Pagination(**dic)
     elif dic['object'] == 'user':
         return User(**dic)
-        # pass
+    elif dic['object'] == 'comment':
+        return Comment(**dic)
     return dic
 
 

@@ -12,3 +12,4 @@ from .page import Page
 from .pagination import Pagination
 from .query import Filter, Sorts, Search
 from .user import User
+from .comment import Comment
