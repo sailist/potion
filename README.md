@@ -27,7 +27,8 @@ nh = NotionHeader(authorization=token)
 req = Request(nh.headers)
 ```
 
-> Create an integration follow [this official tutorial](https://developers.notion.com/docs/getting-started) to get `token`.
+> Create an integration follow [this official tutorial](https://developers.notion.com/docs/getting-started) to
+> get `token`.
 
 A 'retrieve' example. (Full code can be found [here](./examples/basic/database_retrieve.py))
 
@@ -69,11 +70,11 @@ print(req.patch(url=database_update('1bb0f79b87584afe8609d6e248285cfb'),
 
 Here lists examples reimplemented by potion from [official shell examples](https://developers.notion.com/reference)
 
-|Database|Pages|Blocks|Users|Search|
-|---|---|---|---|---|
-|[Query a Database](./examples/basic/database_query.py)|[Retrieve a page](./examples/basic/page_retrieve.py)|[Retrieve a block](./examples/basic/block_retrieve.py)|[Retrieve a user/List all users/Retrieve your token's bot user](./examples/basic/user_retrieve.py)|[Search](./examples/basic/search.py)|
-|[Create a database](./examples/basic/database_create.py)|[Create a page](./examples/basic/page_create.py)|[Update a block](./examples/basic/block_update.py)|||
-|[Retrieve a database](./examples/basic/database_retrieve.py)|[Update page](./examples/basic/page_update.py)|[Retrieve block children](./examples/basic/block_children_retrieve.py)|||
+|Database|Pages|Blocks|Users| Search                                               | Comment                                                    |
+|---|---|---|---|------------------------------------------------------|------------------------------------------------------------|
+|[Query a Database](./examples/basic/database_query.py)|[Retrieve a page](./examples/basic/page_retrieve.py)|[Retrieve a block](./examples/basic/block_retrieve.py)|[Retrieve a user](./examples/basic/user_retrieve.py)| [Search](./examples/basic/search.py)                 | [Retrieve Comments](./examples/basic/comments_retrieve.py) |
+|[Create a database](./examples/basic/database_create.py)|[Create a page](./examples/basic/page_create.py)|[Update a block](./examples/basic/block_update.py)|[List all users](./examples/basic/user_retrieve.py)| [Create Comment](./examples/basic/comment_create.py) |
+|[Retrieve a database](./examples/basic/database_retrieve.py)|[Update page](./examples/basic/page_update.py)|[Retrieve block children](./examples/basic/block_children_retrieve.py)|[Retrieve your token's bot user](./examples/basic/user_retrieve.py)||
 |[Update database](./examples/basic/database_update.py)|[Retrieve a page property item](./examples/basic/page_property_retrieve.py)|[Append block children](./examples/basic/block_append.py)|||
 |||[Delete a block](./examples/basic/block_delete.py)|||
 ||||||
