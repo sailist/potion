@@ -13,7 +13,7 @@ class Pagination(NotionObject):
         return [parse(i) for i in self['results']]
 
     @property
-    def next_cursor(self):
+    def next_cursor(self) -> str:
         return self['next_cursor']
 
     @property

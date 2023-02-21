@@ -5,10 +5,11 @@ Page property values must conform to the property objects laid out in the parent
 
 """
 
+from ._editable import Editable
 from .common import NotionObject, Parent
 
 
-class Database(NotionObject):
+class Database(NotionObject, Editable):
     union_type = 'dict'
 
     def __init__(self, parent=None, title=None, icon=None, properties=None, **kwargs):
@@ -53,22 +54,6 @@ class Database(NotionObject):
     @property
     def id(self) -> str:
         return self['id']
-
-    @property
-    def created_time(self):
-        return self['created_time']
-
-    @property
-    def created_by(self):
-        return self['created_by']
-
-    @property
-    def last_edited_by(self):
-        return self['last_edited_by']
-
-    @property
-    def last_edited_time(self):
-        return self['last_edited_time']
 
     @property
     def url(self) -> str:

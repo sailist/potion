@@ -1,7 +1,8 @@
-from .common import NotionObject
+from .common import NotionObject, Parent
+from ._editable import Editable
 
 
-class Block(NotionObject):
+class Block(NotionObject, Editable):
     union_type = 'dict'
 
     def __init__(self, **kwargs):
@@ -16,12 +17,24 @@ class Block(NotionObject):
         return self['id']
 
     @property
-    def has_children(self):
-        return self['has_children']
-
-    @property
     def type(self):
         return self['type']
+
+    @property
+    def parent(self):
+        return Parent.PageParent(self['parent']['page_id'])
+
+    @property
+    def has_children(self):
+        return bool(self['has_children'].title())
+
+    @property
+    def plain_texts(self):
+        content = self[self.type]  # type: dict
+        if 'rich_text' in content:
+            rich_text = content['rich_text']
+            return ''.join([i['plain_text'] for i in rich_text])
+        return ''
 
 
 class Todo(Block):

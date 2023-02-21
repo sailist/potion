@@ -1,12 +1,13 @@
 from typing import Union, List, Dict
 
 from potion.objects import NotionObject
+from potion.objects._editable import Editable
 from potion.objects.block import Block
 from potion.objects.common import Properties, Parent
 from potion.objects.property import Property
 
 
-class Page(NotionObject):
+class Page(NotionObject, Editable):
     """
     For appending blocks
     ```python
@@ -95,22 +96,6 @@ class Page(NotionObject):
     @property
     def id(self):
         return self['id']
-
-    @property
-    def created_time(self):
-        return self['created_time']
-
-    @property
-    def last_edited_time(self):
-        return self['last_edited_time']
-
-    @property
-    def created_by(self):
-        return self['created_by']
-
-    @property
-    def last_edited_by(self):
-        return self['last_edited_by']
 
     @property
     def archived(self):
