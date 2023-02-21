@@ -12,6 +12,9 @@ def parse(dic: dict) -> NotionObject:
         return Block(**dic)
     elif dic['object'] == 'list':
         return Pagination(**dic)
+    elif dic['object'] == 'user':
+        return User(**dic)
+        # pass
     return dic
 
 
